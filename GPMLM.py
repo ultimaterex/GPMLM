@@ -7,6 +7,7 @@ mc = Mobileclient()
 
 pathToAuth = "./bin/auth.cred"
 pathToAll_Songs = "./bin/all_songs.txt"
+pathToAll_Playlists = "./bin/all_playlists.txt"
 pathToConfig = "./bin/config.txt"
 
 
@@ -61,6 +62,17 @@ def returnSongs():
             songs_file.write("\n" + str(item))
 
 
+# Returns all playlists
+def returnPlaylists():
+    all_playlists = mc.get_all_playlists(incremental=False, include_deleted=None, updated_after=None)
+    print(all_playlists)
+    if os.path.exists(pathToAll_Playlists):
+        os.remove(pathToAll_Playlists)
+    for item in all_playlists:
+        print(item)
+        with open(pathToAll_Playlists, "a", encoding='utf-8') as playlists_file:
+            playlists_file.write("\n" + str(item))
+
 # buffer text
 
 
@@ -103,7 +115,7 @@ login()
 print(f"user has a active GPM Subscription: {mc.is_subscribed}")
 devices()
 returnSongs()
-
+returnPlaylists()
 
 
 
