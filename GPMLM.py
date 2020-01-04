@@ -1,6 +1,7 @@
 from gmusicapi import Musicmanager
 from gmusicapi import Mobileclient
 import os.path
+import sqlite3
 
 mm = Musicmanager()
 mc = Mobileclient()
@@ -113,10 +114,12 @@ login()
 
 # Checks to see if user has an active GPM Subscription
 print(f"user has a active GPM Subscription: {mc.is_subscribed}")
-devices()
-returnSongs()
-returnPlaylists()
 
+# devices()
+# returnSongs()
+# returnPlaylists()
+
+conn = sqlite3.connect('songs.db')
 
 
 
